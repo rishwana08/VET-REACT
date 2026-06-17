@@ -1,122 +1,232 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
-
 function App() {
-  const [count, setCount] = useState(0)
+  const [name, setName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+
+  const inputStyle = {
+    width: "100%",
+    padding: "10px",
+    margin: "10px 0",
+    borderRadius: "5px",
+    border: "1px solid #ccc",
+  };
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
+    <div
+      style={{
+        width: "700px",
+        margin: "30px auto",
+        padding: "25px",
+        borderRadius: "15px",
+        boxShadow: "0 0 15px rgba(0,0,0,0.2)",
+      }}
+    >
+      <h1
+        style={{
+          textAlign: "center",
+        }}
+      >
+        Learner Registration
+      </h1>
+
+      <input
+        type="text"
+        placeholder="Enter Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        style={inputStyle}
+      />
+
+      <input
+        type="email"
+        placeholder="Enter Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        style={inputStyle}
+      />
+      <input
+        type="text"
+        placeholder="Enter Department"
+        value={department}
+        onChange={(e) => setDepartment(e.target.value)}
+        style={inputStyle}
+        />
+        <input
+          type="number"
+
+          placeholder="Enter Age"
+
+          value={age}
+
+          onChange={(e) =>
+
+            setAge(e.target.value)
+
+          }
+
+          style = {inputStyle}
+
+        />
         <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
+        
+          onClick={handleSubmit}
+
+          style={buttonStyle}
+
         >
-          Count is {count}
+
+          {
+
+            editIndex !== null
+
+            ?
+
+            "Update Student"
+
+            :
+
+            "Add Student"
+
+          }
+
         </button>
-      </section>
 
-      <div className="ticks"></div>
+        <h2>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+          Student List
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+        </h2>
+
+        <table
+          border="1"
+          cellPadding="10"
+          style={{
+
+            width: "100",
+
+            borderCollapse:
+
+            "collapse"
+
+          }}
+        >
+
+          <thead>
+
+            <tr>
+
+              <th>Name</th>
+
+              <th>Email</th>
+
+              <th>Department</th>
+
+              <th>Age</th>
+
+              <th>Actions</th>
+
+            </tr>
+
+          </thead>
+          <tbody>
+
+            {
+
+              students.map(
+
+                (student, index) => (
+                  <tr key={index}>
+
+                    <td>
+
+                      {student.name}
+
+                    </td>
+
+                    <td>
+
+                      {student.email}
+
+                    </td>
+
+                    <td>
+
+                      {student.department}
+
+                    </td>
+
+                    <td>
+
+                      {student.age}
+
+                    </td>
+
+                    <td>
+
+                      <button
+
+                        onClick={() =>
+
+                          handleEdit(index)
+
+                        }
+                      >
+
+                        Edit
+
+                      </button>
+
+                      <button
+                          onClick={() =>
+
+                            handleDelete(index)
+
+                          }
+
+                          style={{
+
+                            marginLeft:
+
+                            "10px"
+
+                          }}
+
+                      >
+
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                )
+
+              )
+            }
+          </tbody>
+
+        </table>
+    </div>
+  );
+}  
+
+import { useState, useEffect } from "react";
+
+function App(){
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [department, setDepartment] = useState("");
+  const [age, setAge] = useState("");
+
+  const [students, setStudents] = useState([]);
+
+  const [editIndex, setEditIndex] = useState(null);
+
+  useEffect(() => {
+
+    const savedStudents =
+      JSON.parse(
+        localStorage.getItem("students")
+        
+      )
+  }
   )
 }
-
-export default App
